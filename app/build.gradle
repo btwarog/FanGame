@@ -1,17 +1,22 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "pl.btwarog.fangame"
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -19,12 +24,52 @@ android {
     }
 }
 
+
+repositories {
+    maven {url "https://clojars.org/repo/"}
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    // App's dependencies, including test
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    compile "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+
+    compile "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
+    compile "io.reactivex:rxjava:$rootProject.ext.rxJavaVersion"
+
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.loginInterceptor"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVersion"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
+
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    compile "org.glassfish:javax.annotation:$rootProject.ext.javaXVersion"
+
+    //Dagger 2 dependencies
+    apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+
+    compile "org.parceler:parceler-api:$rootProject.ext.parcelerVersion"
+    apt "org.parceler:parceler:$rootProject.ext.parcelerVersion"
+//    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+
+    compile "frankiesardo:icepick:$rootProject.ext.icepickVersion"
+    provided "frankiesardo:icepick-processor:$rootProject.ext.icepickVersion"
+
+    //fragmentArgs
+
+    compile "com.hannesdorfmann.fragmentargs:annotation:$rootProject.ext.fragmentArgsVersion"
+    apt "com.hannesdorfmann.fragmentargs:processor:$rootProject.ext.fragmentArgsVersion"
+
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
