@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import icepick.Icepick;
 import pl.btwarog.fangame.common.listeners.OnBackPressedListener;
 
@@ -20,7 +21,9 @@ import pl.btwarog.fangame.common.listeners.OnBackPressedListener;
 
 public abstract class BaseFragment extends Fragment implements OnBackPressedListener {
 
-    ViewGroup mContentView;
+    protected ViewGroup contentView;
+
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +41,13 @@ public abstract class BaseFragment extends Fragment implements OnBackPressedList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mContentView = (ViewGroup) inflater.inflate(getLayoutId(), container, false);
+        contentView = (ViewGroup) inflater.inflate(getLayoutId(), container, false);
 
-        ButterKnife.bind(this, mContentView);
+        unbinder = ButterKnife.bind(this, contentView);
 
         ((BaseActivity) getActivity()).setOnBackPressedListener(this);
 
-        return mContentView;
+        return contentView;
     }
 
     @Override
@@ -54,6 +57,7 @@ public abstract class BaseFragment extends Fragment implements OnBackPressedList
 
     @Override
     public void onDestroyView() {
+        unbinder.unbind();
         super.onDestroyView();
     }
 

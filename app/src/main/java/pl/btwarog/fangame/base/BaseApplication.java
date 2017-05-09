@@ -10,7 +10,7 @@ import pl.btwarog.fangame.injector.component.ApplicationComponent;
 
 public abstract class BaseApplication extends Application {
 
-    private ApplicationComponent applicationComponent;
+    protected ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import pl.btwarog.fangame.common.listeners.OnBackPressedListener;
 
 /**
@@ -15,7 +16,9 @@ import pl.btwarog.fangame.common.listeners.OnBackPressedListener;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    OnBackPressedListener mOnBackPressedListener;
+    private OnBackPressedListener onBackPressedListener;
+
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +26,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         setUserInterface();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
     protected void setUserInterface() {
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
     }
 
     @LayoutRes
@@ -41,13 +45,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
-        mOnBackPressedListener = onBackPressedListener;
+        this.onBackPressedListener = onBackPressedListener;
     }
 
     @Override
     public void onBackPressed() {
-        if (mOnBackPressedListener != null) {
-            if (!mOnBackPressedListener.onBackPressed()) {
+        if (onBackPressedListener != null) {
+            if (!onBackPressedListener.onBackPressed()) {
                 super.onBackPressed();
             }
         } else {
