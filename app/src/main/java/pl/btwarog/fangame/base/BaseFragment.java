@@ -19,7 +19,7 @@ import pl.btwarog.fangame.common.listeners.OnBackPressedListener;
  * Created by bartlomiejtwarog on 09.05.2017.
  */
 
-public abstract class BaseFragment extends Fragment implements OnBackPressedListener {
+public abstract class BaseFragment<T extends BaseFragment> extends Fragment implements OnBackPressedListener {
 
     protected ViewGroup contentView;
 
@@ -30,6 +30,7 @@ public abstract class BaseFragment extends Fragment implements OnBackPressedList
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -74,4 +75,6 @@ public abstract class BaseFragment extends Fragment implements OnBackPressedList
             ((BaseActivity) getActivity()).getSupportActionBar().setTitle(title);
         }
     }
+
+    protected abstract void initializeDependencyInjector(T t);
 }

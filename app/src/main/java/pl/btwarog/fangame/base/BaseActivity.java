@@ -23,10 +23,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUserInterface();
+        setUserInterface(savedInstanceState);
     }
 
-    protected void setUserInterface() {
+    protected void setUserInterface(Bundle savedInstanceState) {
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
     }

@@ -10,4 +10,12 @@ public class Image {
 
     @SerializedName("default")
     Media defaultImage;
+
+    public Media getDefaultImage() {
+        return defaultImage;
+    }
+
+    public void setDefaultImage(Media defaultImage) {
+        this.defaultImage = defaultImage;
+    }
 }

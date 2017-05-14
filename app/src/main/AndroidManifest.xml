@@ -2,15 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="pl.btwarog.fangame">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".FanGameApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:name=".FanGameApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.intro.IntroActivity">
+        <activity
+            android:name=".ui.intro.IntroActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,6 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity"/>
+
+        <service
+            android:name=".network.FetchDataService"
+            android:exported="false"/>
+
+        <activity android:name=".ui.game.list.GameListActivity">
+        </activity>
     </application>
 
 </manifest>

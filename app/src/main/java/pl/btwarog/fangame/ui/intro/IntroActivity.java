@@ -1,5 +1,7 @@
 package pl.btwarog.fangame.ui.intro;
 
+import android.os.Bundle;
+
 import pl.btwarog.fangame.R;
 import pl.btwarog.fangame.base.BaseActivity;
 
@@ -11,12 +13,23 @@ import pl.btwarog.fangame.base.BaseActivity;
 public class IntroActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_intro;
+        return R.layout.activity_container;
     }
 
     @Override
-    protected void setUserInterface() {
-        super.setUserInterface();
+    protected void setUserInterface(Bundle savedInstanceState) {
+        super.setUserInterface(savedInstanceState);
+
+        IntroFragment introFragment = (IntroFragment) getSupportFragmentManager().findFragmentByTag(IntroFragment.TAG);
+
+        if (introFragment == null) {
+            introFragment = IntroFragment.createFragment();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, introFragment, IntroFragment.TAG)
+                    .commit();
+        }
 
     }
 }

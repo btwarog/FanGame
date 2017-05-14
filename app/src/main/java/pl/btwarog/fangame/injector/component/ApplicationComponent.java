@@ -1,13 +1,15 @@
 package pl.btwarog.fangame.injector.component;
 
-import com.google.gson.Gson;
-
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import pl.btwarog.fangame.database.AppDatabase;
+import pl.btwarog.fangame.domain.api.FanGameApi;
 import pl.btwarog.fangame.injector.module.ApplicationModule;
-import rx.Scheduler;
+import pl.btwarog.fangame.injector.module.DatabaseModule;
+import pl.btwarog.fangame.injector.module.NetworkModule;
+import pl.btwarog.fangame.network.FetchDataService;
+import pl.btwarog.fangame.ui.intro.IntroFragment;
 
 /**
  * Created by bartlomiejtwarog on 09.05.2017.
@@ -15,14 +17,14 @@ import rx.Scheduler;
 
 
 @Singleton
-@Component(modules = {ApplicationModule.class})
+@Component(modules = {ApplicationModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
 
-    Gson gson();
+    void inject(IntroFragment introFragment);
 
-    @Named("ui_thread")
-    Scheduler uiThread();
+    void inject(FetchDataService fetchDataService);
 
-    @Named("executor_thread")
-    Scheduler executorThread();
+    FanGameApi fanGameApi();
+
+    AppDatabase appDatabase();
 }

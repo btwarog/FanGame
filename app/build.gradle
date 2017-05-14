@@ -29,7 +29,7 @@ android {
 
 
 repositories {
-    maven {url "https://clojars.org/repo/"}
+    maven { url "https://clojars.org/repo/" }
 }
 
 
@@ -41,19 +41,18 @@ dependencies {
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     compile "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
-
-    compile "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
-    compile "io.reactivex:rxjava:$rootProject.ext.rxJavaVersion"
 
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.loginInterceptor"
     compile "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
+
+    compile "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
+    compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
 
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-    compile "org.glassfish:javax.annotation:$rootProject.ext.javaXVersion"
 
     //Dagger 2 dependencies
     apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
@@ -74,5 +73,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

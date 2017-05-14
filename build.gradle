@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.3.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "io.realm:realm-gradle-plugin:3.1.4"
 
@@ -52,14 +52,12 @@ ext {
     //fragmentArgs
     fragmentArgsVersion = '3.0.2'
 
-    //rxJava
-    javaXVersion = '10.0-b28'
-    rxJavaVersion = '1.1.0'
-    rxAndroidVersion = '1.1.0'
-
     parcelerVersion = '1.1.7'
 
     icepickVersion = '3.2.0'
     glideVersion = '3.8.0'
+
+    //Stetho
+    stethoVersion = '1.4.1'
 
 }
