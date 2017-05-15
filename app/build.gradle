@@ -59,7 +59,6 @@ dependencies {
 
     compile "org.parceler:parceler-api:$rootProject.ext.parcelerVersion"
     apt "org.parceler:parceler:$rootProject.ext.parcelerVersion"
-//    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
 
     compile "frankiesardo:icepick:$rootProject.ext.icepickVersion"
     provided "frankiesardo:icepick-processor:$rootProject.ext.icepickVersion"
@@ -73,6 +72,5 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
