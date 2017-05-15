@@ -21,14 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.dashboard.DashboardActivity"/>
 
         <service
             android:name=".network.FetchDataService"
             android:exported="false"/>
 
-        <activity android:name=".ui.game.list.GameListActivity">
-        </activity>
     </application>
 
 </manifest>

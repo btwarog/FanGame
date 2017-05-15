@@ -20,7 +20,7 @@ import pl.btwarog.fangame.common.Constants;
 import pl.btwarog.fangame.common.listeners.OnBroadcastRecieveListener;
 import pl.btwarog.fangame.common.receivers.DownloadDataReceiver;
 import pl.btwarog.fangame.network.FetchDataService;
-import pl.btwarog.fangame.ui.game.list.GameListActivity;
+import pl.btwarog.fangame.ui.dashboard.DashboardActivity;
 
 /**
  * Created by bartlomiejtwarog on 14.05.2017.
@@ -102,12 +102,17 @@ public class IntroFragment extends BaseFragment<IntroFragment> implements IntroC
     }
 
     @Override
+    public void startDashboardActivity() {
+        startActivity(new Intent(getActivity(), DashboardActivity.class));
+        getActivity().finish();
+    }
+
+    @Override
     public void onBroadcastReceived(Constants.Status status) {
         if (status == Constants.Status.MSG_SUCCESS) {
             hideError();
             hideProgress();
-            startActivity(new Intent(getActivity(), GameListActivity.class));
-            getActivity().finish();
+            startDashboardActivity();
         } else {
             hideProgress();
             showError();
@@ -120,6 +125,7 @@ public class IntroFragment extends BaseFragment<IntroFragment> implements IntroC
         showProgress();
         introPresenter.fetchData();
     }
+
 
     private void showProgress() {
         mProgressLayout.setVisibility(View.VISIBLE);

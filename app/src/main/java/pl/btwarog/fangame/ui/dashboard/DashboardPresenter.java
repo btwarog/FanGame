@@ -1,4 +1,6 @@
-package pl.btwarog.fangame.ui.intro;
+package pl.btwarog.fangame.ui.dashboard;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -10,14 +12,16 @@ import pl.btwarog.fangame.database.model.LocalPlayer;
  * Created by bartlomiejtwarog on 14.05.2017.
  */
 
-public class IntroPresenter implements IntroContract.Presenter {
+public class DashboardPresenter implements DashboardContract.Presenter {
 
-    IntroContract.View view;
+    DashboardContract.View view;
 
     AppDatabase appDatabase;
 
+    List<LocalPlayer> localPlayers;
+
     @Inject
-    public IntroPresenter(AppDatabase appDatabase) {
+    public DashboardPresenter(AppDatabase appDatabase) {
         this.appDatabase = appDatabase;
     }
 
@@ -25,18 +29,19 @@ public class IntroPresenter implements IntroContract.Presenter {
     @Override
     public void fetchData() {
         appDatabase.setup();
-        RealmResults<LocalPlayer> players = appDatabase.findAll(LocalPlayer.class);
-        if (players != null && players.size() > 0) {
+        RealmResults<LocalPlayer> players =  appDatabase.findAll(LocalPlayer.class);
+        if(players == null || players.size() == 0) {
             appDatabase.close();
-            view.startDashboardActivity();
+            view.finish();
             return;
         }
+        localPlayers = appDatabase.getRealm().copyFromRealm(players);
+        view.setAdapterData(localPlayers);
         appDatabase.close();
-        view.startFetchingRemoteDataService();
     }
 
     @Override
-    public void attachView(IntroContract.View view) {
+    public void attachView(DashboardContract.View view) {
         this.view = view;
     }
 
