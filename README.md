@@ -1,2 +1,2 @@
 # FanGame
-FDGame
+FanGame, simple variation of an game.
