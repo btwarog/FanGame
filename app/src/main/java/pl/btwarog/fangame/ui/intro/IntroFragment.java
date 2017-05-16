@@ -35,13 +35,13 @@ public class IntroFragment extends BaseFragment<IntroFragment> implements IntroC
     DownloadDataReceiver downloadDataReceiver;
 
     @BindView(R.id.error_layout)
-    LinearLayout mErrorLayout;
+    LinearLayout errorLayout;
 
     @BindView(R.id.retry_button)
-    Button mRetryButton;
+    Button retryButton;
 
     @BindView(R.id.progress_layout)
-    LinearLayout mProgressLayout;
+    LinearLayout progressLayout;
 
 
     public static IntroFragment createFragment() {
@@ -128,18 +128,18 @@ public class IntroFragment extends BaseFragment<IntroFragment> implements IntroC
 
 
     private void showProgress() {
-        mProgressLayout.setVisibility(View.VISIBLE);
+        progressLayout.setVisibility(View.VISIBLE);
     }
 
     private void hideProgress() {
-        mProgressLayout.setVisibility(View.GONE);
+        progressLayout.setVisibility(View.GONE);
     }
 
     private void showError() {
-        mErrorLayout.setVisibility(View.VISIBLE);
+        errorLayout.setVisibility(View.VISIBLE);
     }
 
     private void hideError() {
-        mErrorLayout.setVisibility(View.GONE);
+        errorLayout.setVisibility(View.GONE);
     }
 }

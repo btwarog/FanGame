@@ -8,4 +8,12 @@
     <string name="app_info">Take a look at players list and try remember their points values. It\'s important during game</string>
     <string name="points" formatted="false">%s PTS</string>
     <string name="player_profile_photo">Player profile photo</string>
+    <string name="correct_guess">Correct guess</string>
+    <string name="wrong_guess">Wrong guess</string>
+    <string name="game_info">Click on player to select one.</string>
+    <string name="dialog_info">Info</string>
+    <string name="dialog_info_message" formatted="false">Correct guesses: %d\nWrong guesses: %d</string>
+    <string name="ok">OK</string>
+    <string name="dialog_game_end">End of Game</string>
+    <string name="dialog_game_end_message" formatted="false">Correct answers: %s</string>
 </resources>

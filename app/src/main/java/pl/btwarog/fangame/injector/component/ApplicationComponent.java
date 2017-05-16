@@ -10,6 +10,7 @@ import pl.btwarog.fangame.injector.module.DatabaseModule;
 import pl.btwarog.fangame.injector.module.NetworkModule;
 import pl.btwarog.fangame.network.FetchDataService;
 import pl.btwarog.fangame.ui.dashboard.DashboardFragment;
+import pl.btwarog.fangame.ui.game.GameFragment;
 import pl.btwarog.fangame.ui.intro.IntroFragment;
 
 /**
@@ -30,4 +31,6 @@ public interface ApplicationComponent {
     AppDatabase appDatabase();
 
     void inject(DashboardFragment dashboardFragment);
+
+    void inject(GameFragment gameFragment);
 }

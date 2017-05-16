@@ -2,7 +2,6 @@ package pl.btwarog.fangame.injector.module;
 
 import android.content.Context;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -37,9 +36,6 @@ public class NetworkModule {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(10, TimeUnit.SECONDS);
         builder.addInterceptor(logging);
-        if (BuildConfig.DEBUG) {
-            builder.addNetworkInterceptor(new StethoInterceptor());
-        }
         builder.addInterceptor(new Interceptor() {
 
             @Override
